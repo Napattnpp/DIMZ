@@ -1,11 +1,14 @@
 from serial import Serial
+import os
 import time
 import cv2
 
 serialPort = '/dev/ttyUSB0'
 baudRate = 115200
 
-video_output_path = ''
+video_output_path = '../Fire-Detection/Image/Result/video-output.mp4'
+
+ai_path = '../Fire-Detection/Workspace/main.py'
 
 camera = cv2.VideoCapture(0)
 
@@ -32,16 +35,13 @@ def main():
                 print("*    Start record    *")
                 print("***********************\n\n")
                 ret, frame = camera.read()
-
                 while camera.isOpened():
+                    # Write frame
+                    out.write(frame)
 
                     command = ser.readline()
                     print(command)
-
-                    # TODO: Write frame
-                    out.write(frame)
-
-                    if command == b"@ar|rec$-1\r\n":
+                    if command == b"@ar|rec$-1;\r\n":
                         # Stop record
                         print("\n\n***********************")
                         print("*    Stop record     *")
@@ -50,8 +50,9 @@ def main():
                 out.release()
                 camera.release()
 
-                # TODO: Call AI
+                # Run AI
+                os.system('python3 ' + ai_path)
+                break
 
 if __name__ == "__main__":
     main()
-
