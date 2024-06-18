@@ -33,8 +33,11 @@ def main():
                 print("\n\n***********************")
                 print("*    Start record     *")
                 print("***********************\n\n")
-                ret, frame = camera.read()
+
                 while camera.isOpened():
+                    # Read frame
+                    ret, frame = camera.read()
+
                     # Write frame
                     out.write(frame)
 
