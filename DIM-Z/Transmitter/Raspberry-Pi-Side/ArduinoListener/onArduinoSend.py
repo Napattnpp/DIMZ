@@ -31,7 +31,7 @@ def main():
             if command == b"@ar|rec$1;\r\n":
                 # Start record
                 print("\n\n***********************")
-                print("*    Start record    *")
+                print("*    Start record     *")
                 print("***********************\n\n")
                 ret, frame = camera.read()
                 while camera.isOpened():
@@ -43,7 +43,7 @@ def main():
                     if command == b"@ar|rec$-1;\r\n":
                         # Stop record
                         print("\n\n***********************")
-                        print("*    Stop record     *")
+                        print("*     Stop record     *")
                         print("***********************\n\n")
                         break
                 out.release()
