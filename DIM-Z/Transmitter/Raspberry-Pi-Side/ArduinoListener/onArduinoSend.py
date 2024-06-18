@@ -3,12 +3,11 @@ import os
 import time
 import cv2
 
+video_output_path = './Fire-Detection/Image/Source/video-output.mp4'
+ai_path = './Fire-Detection/Workspace/main.py'
+
 serialPort = '/dev/ttyUSB0'
 baudRate = 115200
-
-video_output_path = '../Fire-Detection/Image/Result/video-output.mp4'
-
-ai_path = '../Fire-Detection/Workspace/main.py'
 
 camera = cv2.VideoCapture(0)
 
