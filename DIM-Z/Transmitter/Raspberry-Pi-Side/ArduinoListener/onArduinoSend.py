@@ -34,7 +34,7 @@ def main():
                         print("\n\n***********************")
                         print("*     Stop predict     *")
                         print("***********************\n\n")
-                        # Kill python script run in background
+                        # TODO: Kill python script run in background
                         break
                 break
 
