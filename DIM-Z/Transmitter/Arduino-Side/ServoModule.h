@@ -46,7 +46,7 @@ void ServoModule::resolution360() {
     case 0:
       if (abs(abs(compassModule.azimuth) - 180) >= COMPASS_OFFSET) {
         if (writingState == false) {
-          Serial.println("@ar|rec$1;\r\n");
+          Serial.println("@ar|pred$1;\r\n");
           // Serial.println("[ServoModule]: (state) 0");
           servo.write(SERVO_CLOCKWISE);
           state = 0;
@@ -106,7 +106,7 @@ void ServoModule::resolution360() {
 
     case 4:
       if (writingState == false) {
-        Serial.println("@ar|rec$-1;\r\n");
+        Serial.println("@ar|pred$-1;\r\n");
         // Serial.println("[ServoModule]: (state) 4");
         servo.write(SERVO_STOP);
         writingState = true;

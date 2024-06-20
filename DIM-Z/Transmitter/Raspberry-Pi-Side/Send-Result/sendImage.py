@@ -13,12 +13,11 @@ def main():
         # Open file for read encoded image
         with open(alphaEn_output_path, 'rb') as file:
             # Read data up to 32 bytes from file
-            while (buffer := file.read(255)):
+            while (buffer := file.read(32)):
                 try:
                     # Send data to serial port
                     print(buffer)
                     ser.write(buffer)
-                    time.sleep(1.5)
                 except KeyboardInterrupt:
                     exit(1)
 
