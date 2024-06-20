@@ -1,23 +1,13 @@
 from serial import Serial
 import os
+import sys
 import time
-import cv2
 
 video_output_path = './Fire-Detection/Image/Source/video-output.mp4'
 ai_path = './Fire-Detection/Workspace/main.py'
 
 serialPort = '/dev/ttyUSB0'
 baudRate = 115200
-
-camera = cv2.VideoCapture(0)
-
-# Get frame size
-frame_width = int(camera.get(cv2.CAP_PROP_FRAME_WIDTH))
-frame_height = int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
-frame_size = (frame_width, frame_height)
-
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter(video_output_path, fourcc, 20, frame_size)
 
 def main():
     # Open serial port
@@ -28,32 +18,25 @@ def main():
         while True:
             command = ser.readline()
             print(command)
-            if command == b"@ar|rec$1;\r\n":
-                # Start record
+            if command == b"@ar|pred$1;\r\n":
+                # Start predict
                 print("\n\n***********************")
-                print("*    Start record     *")
+                print("*    Start predict     *")
                 print("***********************\n\n")
 
-                while camera.isOpened():
-                    # Read frame
-                    ret, frame = camera.read()
-
-                    # Write frame
-                    out.write(frame)
+                while True:
+                    # Run an AI in background task
+                    os.system('python3 ' + ai_path + " &")
 
                     command = ser.readline()
                     print(command)
-                    if command == b"@ar|rec$-1;\r\n":
-                        # Stop record
+                    if command == b"@ar|pred$-1;\r\n":
+                        # Stop predict
                         print("\n\n***********************")
-                        print("*     Stop record     *")
+                        print("*     Stop predict     *")
                         print("***********************\n\n")
+                        # Kill python script run in background
                         break
-                out.release()
-                camera.release()
-
-                # Run AI
-                os.system('python3 ' + ai_path)
                 break
 
 if __name__ == "__main__":
