@@ -1,6 +1,5 @@
 from serial import Serial
 import os
-import sys
 import time
 
 video_output_path = './Fire-Detection/Image/Source/video-output.mp4'
