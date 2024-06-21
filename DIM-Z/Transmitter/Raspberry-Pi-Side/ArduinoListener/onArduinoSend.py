@@ -48,7 +48,13 @@ def main():
                             # Wait for process to terminate
                             process.wait()
                             print(f'Stopped process with PID: {process.pid}')
+                        # Break from the predict loop by @ar|pred$-1; command
                         break
+                '''
+                    Break from the predict loop if object is detected.
+                    No need to kill AI-script task.
+                    If an object is detected the script will automatic exist.
+                '''
                 break
         # Send prediction to Arduino
         sys.os("python3 " + send_textResult_path)
