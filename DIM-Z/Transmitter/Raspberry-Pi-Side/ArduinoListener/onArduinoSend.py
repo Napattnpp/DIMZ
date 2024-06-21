@@ -1,6 +1,6 @@
 from serial import Serial
 import subprocess
-import sys
+import os
 import time
 
 ai_script_path = 'Fire-Detection/Workspace/main.py'
@@ -22,16 +22,16 @@ def main():
                 # Start predict
                 log(0)
 
-                while True:
-                    # Run an AI script in background task
-                    process = subprocess.Popen(['python3', ai_script_path])
-                    print(f'Started process with PID: {process.pid}')
+                # Run an AI script in background task
+                process = subprocess.Popen(['python3', ai_script_path])
+                print(f'Started process with PID: {process.pid}')
 
+                while True:
                     '''
                         Check if AI script is not running mean
                         an object is detected.
                     '''
-                    if process == False:
+                    if process is None or process.poll() is not None:
                         # Stop predict
                         log(1)
                         break
@@ -57,7 +57,7 @@ def main():
                 '''
                 break
         # Send prediction to Arduino
-        sys.os("python3 " + send_textResult_path)
+        os.system("python3 " + send_textResult_path)
 
 def log(index):
     if index == 0:
