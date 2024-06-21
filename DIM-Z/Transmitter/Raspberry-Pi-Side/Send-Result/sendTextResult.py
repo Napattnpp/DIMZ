@@ -1,9 +1,12 @@
 from serial import Serial
 import time
 
+text_result_path = './Fire-Detection/Result/test-result.txt'
+
 serialPort = '/dev/ttyUSB0'
 baudRate = 115200
-text_result_path = './Fire-Detection/Result/test-result.txt'
+
+format_predict = ""
 
 def main():
     # Open serial port
@@ -12,10 +15,20 @@ def main():
 
         # Open file for read a prediction
         with open(text_result_path, 'r') as file:
-            predict = file.readline().split()
+            predict = file.readline()
+            predict = predict.replace('\r', '')
+            predict = predict.replace('\n', '')
+
+            if (predict == ""):
+                format_predict = format("NOD")
+            else:
+                format_predict = format(predict)
 
             # Send predict data to serial port
-            print("@rp|ai$" + predict + ";")
-            ser.write("@rp|ai$" + predict + ";")
+            print(format_predict)
+            ser.write(format_predict)
+
+def format(predict):
+    return "@rp|ai$" + predict + ";"
 
 main()
