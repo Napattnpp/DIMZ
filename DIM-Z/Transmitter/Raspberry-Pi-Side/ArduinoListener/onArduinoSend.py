@@ -62,11 +62,11 @@ def main():
 def log(index):
     if index == 0:
         print("\n\n***********************")
-        print("*    Start predict     *")
+        print("*    Start predict    *")
         print("***********************\n\n")
     elif index == 1:
         print("\n\n***********************")
-        print("*     Stop predict     *")
+        print("*     Stop predict    *")
         print("***********************\n\n")
 
 if __name__ == "__main__":
