@@ -36,7 +36,7 @@ class OnArduinoSend:
 
             '''
                 No need to kill AI-script task.
-                If an object is detected the script will automaticlly exist.
+                If an object is detected the script will automaticlly exit.
             '''
             # Send prediction to Arduino
             os.system("python3 " + self.send_textResult_path)
