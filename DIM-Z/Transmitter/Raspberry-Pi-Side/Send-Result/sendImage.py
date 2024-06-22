@@ -8,7 +8,8 @@ alphaEn_output_path = ''
 def main():
     # Open serial port
     with Serial(port=serialPort, baudrate=baudRate, timeout=12) as ser:
-        time.sleep(3)
+        if __name__ == "__main__":
+            time.sleep(3)
 
         # Open file for read encoded image
         with open(alphaEn_output_path, 'rb') as file:

@@ -11,7 +11,8 @@ format_predict = ""
 def main():
     # Open serial port
     with Serial(port=serialPort, baudrate=baudRate, timeout=12) as ser:
-        time.sleep(3)
+        if __name__ == "__main__":
+            time.sleep(3)
 
         # Open file for read a prediction
         with open(text_result_path, 'r') as file:
