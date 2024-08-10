@@ -11,7 +11,7 @@
 #include "MQX.h"
 
 /*-------------------------------------------------------------------------------- GY-NEO6MV2 (GPS) --------------------------------------------------------------------------------*/
-#include <SoftwareSerial.h>
+// #include <SoftwareSerial.h> # ( Can replace with Serial2 )
 #include <TinyGPS++.h>
 #include "GPSModule.h"
 

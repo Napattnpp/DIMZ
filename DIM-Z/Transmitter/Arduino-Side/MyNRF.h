@@ -6,7 +6,7 @@ class MyNRF {
     int index = 0;
 
   public:
-    MyNRF(unsigned char _address[6]) : radio(CE, CSN) {
+    MyNRF(char _address[]) : radio(CE, CSN) {
       for (int i = 0; i < 6; i++) {
         address[i] = _address[i];
       }

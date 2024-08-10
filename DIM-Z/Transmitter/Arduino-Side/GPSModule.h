@@ -3,13 +3,13 @@ class GPSModule {
     bool skipPinState = 0;
     
     TinyGPSPlus tinyGps;
-    SoftwareSerial GPSSerial;
+    // SoftwareSerial GPSSerial;
 
   public:
     double latitude = 0.0;
     double longitude = 0.0;
 
-    GPSModule() : GPSSerial(GPS_RX_PIN, GPS_TX_PIN) {};
+    // GPSModule() : GPSSerial(GPS_RX_PIN, GPS_TX_PIN) {};
     
     void init();
     void rawCommand();
@@ -44,16 +44,16 @@ void GPSModule::init() {
 
 void GPSModule::rawCommand() {
   if (Serial.available()) {
-    GPSSerial.write(Serial.read());
+    Serial2.write(Serial.read());
   }
-  if (GPSSerial.available()) {
-    Serial.write(GPSSerial.read());
+  if (Serial2.available()) {
+    Serial.write(Serial2.read());
   }
 }
 
 void GPSModule::getCoordinate() {
-  if (GPSSerial.available()) {
-    tinyGps.encode(GPSSerial.read());
+  if (Serial2.available()) {
+    tinyGps.encode(Serial2.read());
 
     latitude = tinyGps.location.lat(), 6;
     longitude = tinyGps.location.lng(), 6;
