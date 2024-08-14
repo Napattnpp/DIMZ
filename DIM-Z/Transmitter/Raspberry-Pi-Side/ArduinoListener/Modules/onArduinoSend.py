@@ -10,7 +10,7 @@ class OnArduinoSend:
         self.send_textResult_path = send_textResult_path
 
     def onPredictionStart(self, command):
-        if command == b"@ar|pred$1;\r\n":
+        if command == b"@ar|PR;\r\n":
             # Start predict
             self.log(0)
 
@@ -19,6 +19,8 @@ class OnArduinoSend:
             print(f'Started process with PID: {process.pid}')
 
             self.setPredictionState(True)
+
+            self.ser.write(b'@rp|AIRS$1\r\n')
 
             # Secondary loop (Prediction loop)
             while self.predictionState:
@@ -43,7 +45,7 @@ class OnArduinoSend:
                 
 
     def onPredictionStop(self, command, process):
-        if command == b"@ar|pred$-1;\r\n":
+        if command == b"@ar|SPR;\r\n":
             # Stop predict
             self.log(1)
 
@@ -52,7 +54,7 @@ class OnArduinoSend:
                 process.terminate()
                 process.wait()
                 print(f'Stopped process with PID: {process.pid}')
-            # Break from the secondary loop by @ar|pred$-1; command
+            # Break from the secondary loop by @ar|SPR; command
             self.setPredictionState(False)
 
     def setPredictionState(self, state):
