@@ -42,7 +42,6 @@ class OnArduinoSend:
             '''
             # Send prediction to Arduino
             os.system("python3 " + self.send_textResult_path)
-                
 
     def onPredictionStop(self, command, process):
         if command == b"@ar|SPR;\r\n":
