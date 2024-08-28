@@ -19,14 +19,22 @@ void setup() {
 }
 
 void loop() {
+  main_task();
+  // test_compass();
+}
+
+void main_task() {
   currentTime = millis();
-  compassModule.init();
 
   //--------------------------------------------------------------------- Collect and Send data to datacenter ---------------------------------------------------------------------//
-  if (currentTime - previousTime[0] >= 1000) {
+  // Read & Send data every 30 minute
+  if (currentTime - previousTime[0] >= 300000) {
     // Get temp, humidity, co, lpg and smoke value
-    dhtx.get();
     mqx.get();
+    dhtx.get();
+
+    // mqx.log();
+    // dhtx.log();
 
     // Get current location
     // gps.getCoordinate();
@@ -59,4 +67,12 @@ void loop() {
       onDetected(key);
     }
   }
+
+  delay(100);
+}
+
+void test_compass() {
+  compassModule.start();
+  compassModule.log();
+  delay(100);
 }

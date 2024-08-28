@@ -20,7 +20,7 @@ class OnArduinoSend:
 
             self.setPredictionState(True)
 
-            self.ser.write(b'@rp|AIRS$1\r\n')
+            self.ser.write(b'@rp|AIRS$1;\r\n')
 
             # Secondary loop (Prediction loop)
             while self.predictionState:

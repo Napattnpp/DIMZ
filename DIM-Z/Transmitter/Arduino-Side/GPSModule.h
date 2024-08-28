@@ -18,6 +18,9 @@ class GPSModule {
 
 void GPSModule::init() {
   pinMode(GPS_SKIP_PIN, INPUT_PULLUP);
+  
+  Serial1.begin(9600);
+  delay(3000);
 
   Serial.println("GPS-Serial begin at 9600 baud");
   Serial.print("Waiting for satellites");
@@ -44,16 +47,16 @@ void GPSModule::init() {
 
 void GPSModule::rawCommand() {
   if (Serial.available()) {
-    Serial2.write(Serial.read());
+    Serial1.write(Serial.read());
   }
-  if (Serial2.available()) {
-    Serial.write(Serial2.read());
+  if (Serial1.available()) {
+    Serial.write(Serial1.read());
   }
 }
 
 void GPSModule::getCoordinate() {
-  if (Serial2.available()) {
-    tinyGps.encode(Serial2.read());
+  if (Serial1.available()) {
+    tinyGps.encode(Serial1.read());
 
     latitude = tinyGps.location.lat(), 6;
     longitude = tinyGps.location.lng(), 6;
