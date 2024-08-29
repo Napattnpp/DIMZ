@@ -10,17 +10,18 @@ void setup() {
   compassModule.init();
   servoModule.init();
 
-  myNrf.init();
+  // myNrf.init();
   // gps.init();
 
   //! Initialize dht the last one !//
-  mqx.init();
-  dhtx.init();
+  // mqx.init();
+  // dhtx.init();
 }
 
 void loop() {
-  main_task();
+  // main_task();
   // test_compass();
+  task_1();
 }
 
 void main_task() {
@@ -28,22 +29,22 @@ void main_task() {
 
   //--------------------------------------------------------------------- Collect and Send data to datacenter ---------------------------------------------------------------------//
   // Read & Send data every 30 minute
-  if (currentTime - previousTime[0] >= 300000) {
-    // Get temp, humidity, co, lpg and smoke value
-    mqx.get();
-    dhtx.get();
+  // if (currentTime - previousTime[0] >= 300000) {
+  //   // Get temp, humidity, co, lpg and smoke value
+  //   mqx.get();
+  //   dhtx.get();
 
-    // mqx.log();
-    // dhtx.log();
+  //   // mqx.log();
+  //   // dhtx.log();
 
-    // Get current location
-    // gps.getCoordinate();
+  //   // Get current location
+  //   // gps.getCoordinate();
 
-    // Send data to Datacenter
-    myNrf.sendData(dhtx.temperature, dhtx.humidity, mqx.co, mqx.lpg, mqx.smoke, gps.latitude, gps.longitude);
+  //   // Send data to Datacenter
+  //   myNrf.sendData(dhtx.temperature, dhtx.humidity, mqx.co, mqx.lpg, mqx.smoke, gps.latitude, gps.longitude);
 
-    previousTime[0] = currentTime;
-  }
+  //   previousTime[0] = currentTime;
+  // }
 
   //-------------------------------------------------------------------------------- Rotate camera --------------------------------------------------------------------------------//
   servoModule.resolution360();
@@ -74,5 +75,10 @@ void main_task() {
 void test_compass() {
   compassModule.start();
   compassModule.log();
+  delay(100);
+}
+
+void task_1() {
+  servoModule.resolution360_2();
   delay(100);
 }
