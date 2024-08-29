@@ -1,7 +1,7 @@
 from serial import Serial
 import time
 
-serialPort = '/dev/ttyUSB0'
+serialPort = '/dev/ttyACM0'
 baudRate = 115200
 alphaEn_output_path = ''
 

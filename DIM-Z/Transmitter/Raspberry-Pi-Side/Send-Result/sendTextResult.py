@@ -2,7 +2,7 @@ from Modules.sendTextResultModule import SendTextResultModule as st
 
 text_result_path = 'Fire-Detection/Result/test-result.txt'
 
-serialPort = '/dev/ttyUSB0'
+serialPort = '/dev/ttyACM0'
 baudRate = 115200
 
 st.start()

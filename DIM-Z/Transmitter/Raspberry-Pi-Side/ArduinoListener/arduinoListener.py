@@ -5,7 +5,7 @@ from Modules.onArduinoSend import OnArduinoSend
 ai_script_path = 'Fire-Detection/Workspace/main.py'
 send_textResult_path = 'Send-Result/sendTextResult.py'
 
-serialPort = '/dev/ttyUSB0'
+serialPort = '/dev/ttyACM0'
 baudRate = 115200
 
 def main():
