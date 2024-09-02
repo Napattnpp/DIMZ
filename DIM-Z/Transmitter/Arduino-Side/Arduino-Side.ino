@@ -19,9 +19,9 @@ void setup() {
 }
 
 void loop() {
-  // main_task();
+  main_task();
   // test_compass();
-  task_1();
+  // task_1();
 }
 
 void main_task() {
@@ -75,10 +75,5 @@ void main_task() {
 void test_compass() {
   compassModule.start();
   compassModule.log();
-  delay(100);
-}
-
-void task_1() {
-  servoModule.resolution360_2();
   delay(100);
 }
