@@ -3,7 +3,7 @@
 ### Objective
 The objective of our project is to transition from human-based observation to a camera-based system. Cameras have a much longer viewing distance than humans, and our system provides notifications much faster than manual methods, helping to avoid danger more effectively.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8veayyzala670qn96dwm.png)
+![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8veayyzala670qn96dwm.png)
 
 ---
 
@@ -34,7 +34,7 @@ Our application includes five key features:
 5. **Alert System**
    - If a wildfire is detected, a red circle appears on the map to indicate the affected area. Users within this red circle receive a notification sound, prompting them to evacuate the danger zone.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r002144rhzz1inqrtim3.png)
+![]([https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r002144rhzz1inqrtim3.png](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oqvk333n2d4mny49rr4j.png))
 
 ---
 
@@ -61,4 +61,4 @@ The Wildfire Detection Pole integrates the following components:
 - The encoded data is sent to the Data Center via the NRF module.
 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l2i4m9xpfjubv2indmda.png)
+![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l2i4m9xpfjubv2indmda.png)
