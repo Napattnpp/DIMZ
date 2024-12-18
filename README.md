@@ -14,8 +14,6 @@ Our project has three main components:
 2. **Data Center**: It receives information from the Wildfire Detection Pole and sends it to the internet, allowing users to monitor the temperature and other data around the pole.
 3. **Application**: A mobile app that provides essential wildfire-related features and notifications.
 
-Now, let's discuss our Application and Wildfire Detection Pole in more detail.
-
 ---
 
 ### Application Features
@@ -57,7 +55,7 @@ The Wildfire Detection Pole integrates the following components:
    - Temperature and humidity data are sent every 30 minutes.
 
 #### Data Transmission:
-- Data is encoded in two stages for efficiency:
+- Data is encoded in two stages for efficiency
   1. **Run-Length Encoding (RLE)**: Compresses the data to reduce size.
   2. **Alphabet Replacement Encoding**: Further compresses the RLE data for transmission.
 - The encoded data is sent to the Data Center via the NRF module.
