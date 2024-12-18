@@ -1,5 +1,7 @@
 # The Intelligent Disaster Management System with Alternative Energy and AI-Powered
 
+[link text](https://www.youtube.com/watch?v=mf8wsbzKulU)
+
 ### Objective
 The objective of our project is to transition from human-based observation to a camera-based system. Cameras have a much longer viewing distance than humans, and our system provides notifications much faster than manual methods, helping to avoid danger more effectively.
 
