@@ -56,10 +56,8 @@ The Wildfire Detection Pole integrates the following components:
 
 #### Data Transmission
 - Data is encoded in two stages for efficiency
-  1. **Run-Length Encoding (RLE)**
-     Compresses the data to reduce size.
-  3. **Alphabet Replacement Encoding**
-     Further compresses the RLE data for transmission.
+  1. **Run-Length Encoding (RLE)**: Compresses the data to reduce size.
+  2. **Alphabet Replacement Encoding**: Further compresses the RLE data for transmission.
 - The encoded data is sent to the Data Center via the NRF module.
 
 
