@@ -64,7 +64,3 @@ The Wildfire Detection Pole integrates the following components:
 
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l2i4m9xpfjubv2indmda.png)
-
----
-
-Thank you for your attention.
