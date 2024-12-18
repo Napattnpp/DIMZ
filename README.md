@@ -1,7 +1,9 @@
 # The Intelligent Disaster Management System with Alternative Energy and AI-Powered
 
 ![image alt text](https://i9.ytimg.com/vi/mf8wsbzKulU/mqdefault.jpg?v=67631ff9&sqp=CMTajLsG&rs=AOn4CLAlX8qfwio2CywKPEp33nHxamfG7Q)
-[link text](https://www.youtube.com/watch?v=mf8wsbzKulU)
+[](https://www.youtube.com/watch?v=mf8wsbzKulU)
+
+---
 
 [![Everything Is AWESOME]([https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg](https://i9.ytimg.com/vi/mf8wsbzKulU/mqdefault.jpg?v=67631ff9&sqp=CMTajLsG&rs=AOn4CLAlX8qfwio2CywKPEp33nHxamfG7Q))]([https://www.youtube.com/watch?v=StTqXEQ2l-Y](https://www.youtube.com/watch?v=mf8wsbzKulU) "Everything Is AWESOME")
 
