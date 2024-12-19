@@ -34,7 +34,7 @@ Our application includes five key features:
 5. **Alert System**
    - If a wildfire is detected, a red circle appears on the map to indicate the affected area. Users within this red circle receive a notification sound, prompting them to evacuate the danger zone.
 
-![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oqvk333n2d4mny49rr4j.png)
+![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yyhiojsrpe7eonefial0.png)
 
 ---
 
