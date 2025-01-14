@@ -41,12 +41,12 @@ Our application includes five key features:
 ### The Wildfire Detection Pole
 The Wildfire Detection Pole integrates the following components:
 
-- **Raspberry Pi PICO Board**: Handles environmental sensors and initial data processing.
+- **Raspberry Pi Pico Board**: Handles environmental sensors and initial data processing.
 - **Raspberry Pi Board**: Controls the camera and processes image data for object detection.
 - **Camera System**: Rotates back and forth to scan the environment and detect wildfires.
 
 #### How It Works
-1. The Raspberry Pi connects to the Raspberry Pi PICO and the camera, controlling the camera's rotation.
+1. The Raspberry Pi connects to the Raspberry Pi Pico and the camera, controlling the camera's rotation.
 2. The camera uses an object detection system to identify wildfires. When a wildfire is detected:
    - The camera stops rotating and captures images of the wildfire.
    - These images, along with temperature and humidity data, are sent to the Data Center.
