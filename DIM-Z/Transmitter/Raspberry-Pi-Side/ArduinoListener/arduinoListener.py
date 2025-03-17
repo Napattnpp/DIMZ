@@ -1,17 +1,12 @@
-from serial import Serial
+import config
 import time
+from serial import Serial
 from Modules.onArduinoSend import OnArduinoSend
-
-ai_script_path = 'Fire-Detection/Workspace/main.py'
-send_textResult_path = 'Send-Result/sendTextResult.py'
-
-serialPort = '/dev/ttyACM0'
-baudRate = 115200
 
 def main():
     # Open serial port
-    with Serial(port=serialPort, baudrate=baudRate, timeout=12) as ser:
-        onArduinoSend = OnArduinoSend(ser, ai_script_path, send_textResult_path)
+    with Serial(port=config.SERIAL_PORT, baudrate=config.BAUD_RATE, timeout=12) as ser:
+        onArduinoSend = OnArduinoSend(ser, config.AI_SCRIPT_PATH, config.SEND_TEXT_RESULT_PATH)
         time.sleep(3)
 
         try:
