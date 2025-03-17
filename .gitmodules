@@ -4,3 +4,12 @@
 [submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/RL-AlphaEn"]
 	path = DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/RL-AlphaEn
 	url = https://github.com/Napattnpp/RL-AlphaEn.git
+[submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/2B64U8"]
+	path = DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/2B64U8
+	url = https://github.com/Napattnpp/2B64U8
+[submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/--force"]
+	path = DIM-Z/Transmitter/Raspberry-Pi-Side/--force
+	url = https://github.com/Napattnpp/Fire-Detection
+[submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/DIM-Z/Transmitter/Raspberry-Pi-Side/Fire-Detecti"]
+	path = DIM-Z/Transmitter/Raspberry-Pi-Side/DIM-Z/Transmitter/Raspberry-Pi-Side/Fire-Detecti
+	url = https://github.com/Napattnpp/Fire-Detection
