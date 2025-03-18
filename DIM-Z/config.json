@@ -1,0 +1,6 @@
+{
+    "station": ["Transmitter"],
+    "transmitter/arduino": ["Station", "Transmitter/Raspberry"],
+    "transmitter/raspberry": ["Station", "Transmitter/Arduino"]
+}
+
