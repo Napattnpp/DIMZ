@@ -1,7 +1,7 @@
-# The Intelligent Disaster Management System with Alternative Energy and AI-Powered
+# The Intelligent Disaster Management System with Alternative Energy and AI-Powered (Earlier version of the document)
 
 ### Objective
-The objective of our project is to transition from human-based observation to a camera-based system. Cameras have a much longer viewing distance than humans, and our system provides notifications much faster than manual methods, helping to avoid danger more effectively.
+The objective of our project is to transition from a human-based observation to a camera-based system. Cameras have a much longer viewing distance than humans, and our system provides notifications much faster than manual methods, helping to avoid danger more effectively.
 
 ![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8veayyzala670qn96dwm.png)
 
@@ -26,7 +26,7 @@ Our application includes five key features:
    - Users can directly call emergency hotlines from within the app.
 
 3. **Location Sharing**
-   - Users can share their current location with others. For instance, if someone is in the forest during a wildfire, they can send their location to request help.
+   - Users can share their current location with others. For instance, someone in the forest during a wildfire can send their location to request help.
 
 4. **Environmental Data**
    - The app provides real-time data, including temperature, humidity, and gas levels around the pole.
@@ -49,7 +49,7 @@ The Wildfire Detection Pole integrates the following components:
 1. The Raspberry Pi 5 connects to the Raspberry Pi Pico and the camera, controlling the camera's rotation.
 2. The camera uses an object detection system to identify wildfires. When a wildfire is detected:
    - The camera stops rotating and captures images of the wildfire.
-   - These images, along with temperature and humidity data, are sent to the Data Center.
+   - These images and temperature and humidity data are sent to the Data Center.
 3. If no wildfires are detected:
    - The camera continues rotating and pauses for 30 seconds after completing a full rotation.
    - Temperature and humidity data are sent every 30 minutes.
