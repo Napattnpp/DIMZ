@@ -1,3 +1,6 @@
 [submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/Modules/BB64U8"]
 	path = DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/Modules/BB64U8
 	url = https://github.com/Napattnpp/BB64U8.git
+[submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/Fire-Detection"]
+	path = DIM-Z/Transmitter/Raspberry-Pi-Side/Fire-Detection
+	url = https://github.com/Napattnpp/Fire-Detection.git
