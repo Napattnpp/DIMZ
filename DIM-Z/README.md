@@ -5,7 +5,7 @@
   - ``` pip3 install pyserial ```
   - ``` pip3 install ultralytics ```
   - ``` pip3 install ncnn ```
-- config.py --> delete unnecessary folders depending on the selected configuration
+- (Optional) Delete unnecessary folders depending on the selected configuration
   - ``` python3 script.py station ``` Deletes the 'Transmitter' folder
   - ``` python3 script.py transmitter/arduino ``` Deletes 'Station' and 'Transmitter/Raspberry'
   - ``` python3 script.py transmitter/rpi ``` Deletes 'Station' and 'Transmitter/Arduino'
