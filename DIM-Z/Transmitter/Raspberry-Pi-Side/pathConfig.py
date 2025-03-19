@@ -8,3 +8,5 @@ SEND_TEXT_RESULT_PATH = 'Send-Result/sendTextResult.py'
 
 NCNN_PARAM = 'Fire-Detection/Model/best_ncnn_model/model.ncnn.param'
 NCNN_BIN = 'Fire-Detection/Model/best_ncnn_model/model.ncnn.bin'
+
+MODEL_PATH = 'Fire-Detection/Model/best_ncnn_model'
