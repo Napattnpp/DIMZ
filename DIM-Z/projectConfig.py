@@ -9,7 +9,7 @@ CURRENT_DIR = os.getcwd();
 BASE_DIR = os.path.join(CURRENT_DIR, "DIM-Z")  # Always use ./DIM-Z
 
 # Config file path
-CONFIG_FILE = os.path.join(CURRENT_DIR, "config.json")
+CONFIG_FILE = os.path.join(CURRENT_DIR, "projectConfig.json")
 
 def delete_folder(folder):
     """Deletes a folder if it exists."""
