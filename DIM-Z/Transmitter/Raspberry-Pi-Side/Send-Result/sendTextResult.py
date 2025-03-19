@@ -1,6 +1,6 @@
-import config
+import pathConfig
 from Modules.sendTextResultModule import SendTextResultModule as ST
 
-st = ST(config.SERIAL_PORT, config.BAUD_RATE)
+st = ST(pathConfig.SERIAL_PORT, pathConfig.BAUD_RATE)
 st.start()
-st.sendFromFile(text_result_path=config.AI_TEXT_RESULT_PATH)
+st.sendFromFile(text_result_path=pathConfig.AI_TEXT_RESULT_PATH)
