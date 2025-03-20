@@ -1,0 +1,6 @@
+{
+    "station": ["Transmitter"],
+    "transmitter/ard": ["Station", "Transmitter/RPi"],
+    "transmitter/rpi": ["Station", "Transmitter/Arduino"]
+}
+

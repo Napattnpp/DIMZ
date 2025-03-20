@@ -6,6 +6,8 @@ from ultralytics import YOLO
 config = configparser.ConfigParser()
 config.read('pathConfig.ini')
 
+ncnn_model = YOLO(config['ncnn_paths']['model_path'])
+
 #  Select the camera
 cam = cv2.VideoCapture(0)
 # while cam.isOpened():
