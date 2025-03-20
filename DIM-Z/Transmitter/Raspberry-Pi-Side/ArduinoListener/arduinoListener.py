@@ -1,12 +1,16 @@
-import config
+import configparser
 import time
 from serial import Serial
 from Modules.onArduinoSend import OnArduinoSend
 
+# Initialize the configparser
+config = configparser.ConfigParser()
+config.read('pathConfig.ini')
+
 def main():
     # Open serial port
-    with Serial(port=config.SERIAL_PORT, baudrate=config.BAUD_RATE, timeout=12) as ser:
-        onArduinoSend = OnArduinoSend(ser, config.AI_SCRIPT_PATH, config.SEND_TEXT_RESULT_PATH)
+    with Serial(port=config['serial_info']['serial_port'], baudrate=config['serial_info']['baud_rate'], timeout=12) as ser:
+        onArduinoSend = OnArduinoSend(ser, config['paths']['ai_script'], config['paths']['send_text_result'])
         time.sleep(3)
 
         try:

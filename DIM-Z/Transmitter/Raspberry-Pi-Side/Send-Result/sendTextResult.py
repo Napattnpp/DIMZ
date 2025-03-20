@@ -1,6 +1,10 @@
-import pathConfig
+import configparser
 from Modules.sendTextResultModule import SendTextResultModule as ST
 
-st = ST(pathConfig.SERIAL_PORT, pathConfig.BAUD_RATE)
+# Initialize the configparser
+config = configparser.ConfigParser()
+config.read('pathConfig.ini')
+
+st = ST(config['serial_info']['serial_port'], config['serial_info']['baud_rate'])
 st.start()
-st.sendFromFile(text_result_path=pathConfig.AI_TEXT_RESULT_PATH)
+st.sendFromFile(text_result_path=config['paths']['ai_text_result'])
