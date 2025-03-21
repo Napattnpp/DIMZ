@@ -1,4 +1,3 @@
-import time
 import cv2
 from BB64U8.Module.bb64u8 import BB64U8
 
@@ -8,7 +7,7 @@ class SendImageResultModule:
     # Create an image encoder/decoder object
     bb64u8 = BB64U8()
 
-    def getImage(save_image_path):
+    def getImage(self, save_image_path):
         # Select and check if camera is fine
         cam = cv2.VideoCapture(0)
         if not cam.isOpened():
@@ -46,4 +45,4 @@ class SendImageResultModule:
                 # Send data to serial port
                 print(chunk)
             except KeyboardInterrupt:
-                exit(1)
+                exit(0)
