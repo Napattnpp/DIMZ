@@ -6,7 +6,7 @@ import json
 CURRENT_DIR = os.getcwd();
 
 # Base directory where DIM-Z is located
-BASE_DIR = os.path.join(CURRENT_DIR, "DIM-Z")  # Always use ./DIM-Z
+BASE_DIR = os.path.join(CURRENT_DIR, "DIMZ")  # Always use ./DIMZ
 
 # Config file path
 CONFIG_FILE = os.path.join(CURRENT_DIR, "projectConfig.json")
