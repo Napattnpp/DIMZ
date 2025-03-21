@@ -5,15 +5,12 @@ import json
 
 CURRENT_DIR = os.getcwd();
 
-# Base directory where DIM-Z is located
-BASE_DIR = os.path.join(CURRENT_DIR, "DIMZ")  # Always use ./DIMZ
-
 # Config file path
 CONFIG_FILE = os.path.join(CURRENT_DIR, "projectConfig.json")
 
 def delete_folder(folder):
     """Deletes a folder if it exists."""
-    folder_path = os.path.join(BASE_DIR, folder)
+    folder_path = os.path.join(CURRENT_DIR, folder)
     if os.path.exists(folder_path):
         shutil.rmtree(folder_path)
         print(f"Deleted: {folder_path}")
