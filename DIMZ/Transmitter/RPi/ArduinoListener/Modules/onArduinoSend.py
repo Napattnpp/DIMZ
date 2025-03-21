@@ -53,6 +53,8 @@ class OnArduinoSend:
                 process.terminate()
                 process.wait()
                 print(f'Stopped process with PID: {process.pid}')
+                
+            # TODO: Write text-result.txt --> Not detect
             # Break from the secondary loop by @ar|SPR; command
             self.setPredictionState(False)
 
