@@ -24,7 +24,7 @@ class OnArduinoSend:
 
             # Secondary loop (Prediction loop)
             while self.predictionState:
-                ''' Check if AI script is not running mean an object is detected. '''
+                ''' Check if the AI script is not running, which means an object is detected. '''
                 if process is None or process.poll() is not None:
                     # Stop predict
                     self.log(1)
@@ -36,9 +36,12 @@ class OnArduinoSend:
                 print(command)
                 self.onPredictionStop(command, process)
 
+            # TODO: Creat var store ai_exit or ard_exit
+            # If ai_exit send_text_result call send_tmage_result
+            # If not this program calls only send_text_result
             '''
-                No need to kill AI-script task.
-                If an object is detected the script will automaticlly exit.
+                No need to kill the AI-script task.
+                If an object is detected the script will automatically exit.
             '''
             # Send prediction to Arduino
             os.system("python3 " + self.send_textResult_path)
@@ -48,7 +51,7 @@ class OnArduinoSend:
             # Stop predict
             self.log(1)
 
-            # Kill python script run in background
+            # Kill Python script run in the background
             if process:
                 process.terminate()
                 process.wait()
