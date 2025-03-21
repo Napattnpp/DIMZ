@@ -3,9 +3,9 @@
 - Create and Activate .venv_dimz with ``` python3 -m venv .venv_dimz ```
 - Install python package
   - ``` pip3 install pyserial ```
-  - ``` pip3 install ultralytics ```
   - ``` pip3 install ncnn ```
+  - ``` pip3 install ultralytics ```
 - (Optional) Delete unnecessary folders depending on the selected configuration
   - ``` python3 script.py station ``` Deletes the 'Transmitter' folder
-  - ``` python3 script.py transmitter/arduino ``` Deletes 'Station' and 'Transmitter/Raspberry-Pi-Side'
-  - ``` python3 script.py transmitter/rpi ``` Deletes 'Station' and 'Transmitter/Arduino-Side'
+  - ``` python3 script.py transmitter/arduino ``` Deletes 'Station' and 'Transmitter/RPi'
+  - ``` python3 script.py transmitter/rpi ``` Deletes 'Station' and 'Transmitter/Arduino'
