@@ -1,6 +1,3 @@
-[submodule "DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/Modules/BB64U8"]
-	path = DIM-Z/Transmitter/Raspberry-Pi-Side/Send-Result/Modules/BB64U8
-	url = https://github.com/Napattnpp/BB64U8.git
 [submodule "DIMZ/Transmitter/RPi/Send-Result/Modules/BB64U8"]
 	path = DIMZ/Transmitter/RPi/Send-Result/Modules/BB64U8
 	url = https://github.com/Napattnpp/BB64U8.git
