@@ -7,7 +7,7 @@ class MQX {
     float lpg = 0.0;
     float smoke = 0.0;
 
-    MQX() : mq2(MQX_PIN) {}
+    MQX(int _mqx_pin) : mq2(_mqx_pin) {}
 
     void init();
     void get();
@@ -29,5 +29,3 @@ void MQX::log() {
   Serial.print("\t" + String(co)  + "\t|\t" + String(lpg) + "\t|\t" + String(smoke) + "\n");
   Serial.print("--------------------------------------------------------\n");
 }
-
-MQX mqx;

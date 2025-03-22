@@ -9,7 +9,7 @@ RF24 radio(CE, CSN);
 void setup() {
   Serial.begin(115200);
 
-  // Serial.println(F("[MyNRF]: Setting up receiver"));
+  Serial.println(F("[MyNRF]: Setting up receiver"));
   // Initialize the transceiver on the SPI bus
   if (!radio.begin()) {
     Serial.println(F("[MyNRF]: Radio hardware is not responding!!"));
@@ -19,7 +19,7 @@ void setup() {
 
   radio.openReadingPipe(0, address);
 
-  radio.setPALevel(RF24_PA_MAX);
+  radio.setPALevel(RF24_PA_HIGH);
   radio.setDataRate(RF24_2MBPS);
 
   radio.startListening();

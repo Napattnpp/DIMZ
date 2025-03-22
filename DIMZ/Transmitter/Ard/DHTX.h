@@ -4,7 +4,7 @@ class DHTX {
     float humidity = 0;
     DHT dht;
 
-    DHTX() : dht(DHT_PIN, DHT_TYPE) {};
+    DHTX(int _dht_pim, int _dht_type) : dht(_dht_pim, _dht_type) {};
 
     void init();
     void get();
@@ -25,5 +25,3 @@ void DHTX::log() {
   Serial.print("\t" + String(temperature)  + "\t\t\t|\t" + String(humidity) + "\n");
   Serial.print("--------------------------------------------------------\n");
 }
-
-DHTX dhtx;

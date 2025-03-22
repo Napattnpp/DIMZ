@@ -1,11 +1,13 @@
 from serial import Serial
 import time
 
-def clean_data(buffer):
+serial_port = ''
+
+def fillter(buffer):
     # Replace all instances of \r\n with just \n
     return buffer.replace(b'\r\n', b'')
 
-def Getting(port, baudRate, filePath):
+def readDate(port, baudRate, filePath):
   time.sleep(3)
 
   print("[Executing]")
@@ -16,12 +18,12 @@ def Getting(port, baudRate, filePath):
     with open(filePath, 'wb') as file:
       while (buffer := ser.read(32)):
         # Clean the data
-        buffer = clean_data(buffer)
-        
+        buffer = fillter(buffer)
+
         print(buffer)
         file.write(buffer)
 
   print("[Done]")
 
 if __name__ == "__main__":
-  Getting('/dev/tty.usbmodem14101', 115200, 'DIM-Z/Station/Output/image-output-serial.txt')
+  readDate(serial_port, 115200, 'DIMZ/Station/Output/image-output-serial.txt')

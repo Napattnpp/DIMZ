@@ -10,7 +10,7 @@ class GPSModule {
     double longitude = 0.0;
 
     // GPSModule() : GPSSerial(GPS_RX_PIN, GPS_TX_PIN) {};
-    
+
     void init();
     void rawCommand();
     void getCoordinate();
@@ -18,7 +18,7 @@ class GPSModule {
 
 void GPSModule::init() {
   pinMode(GPS_SKIP_PIN, INPUT_PULLUP);
-  
+
   Serial1.begin(9600);
   delay(3000);
 
@@ -62,5 +62,3 @@ void GPSModule::getCoordinate() {
     longitude = tinyGps.location.lng(), 6;
   }
 }
-
-GPSModule gps;

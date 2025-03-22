@@ -1,5 +1,10 @@
 #include "SystemFile.h"
 
+DHTx dhtx(DHT_PIN, DHT_TYPE);
+MQX mqx(MQX_PIN);
+GPSModule gps;
+ServoModule servoModule(SERVO_PIN);
+
 unsigned long currentTime = 0;
 unsigned long previousTime[2];
 
@@ -10,18 +15,16 @@ void setup() {
   compassModule.init();
   servoModule.init();
 
-  // myNrf.init();
-  // gps.init();
+  myNrf.init();
+  gps.init();
 
   //! Initialize dht the last one !//
-  // mqx.init();
-  // dhtx.init();
+  mqx.init();
+  dhtx.init();
 }
 
 void loop() {
   main_task();
-  // test_compass();
-  // task_1();
 }
 
 void main_task() {
@@ -29,51 +32,26 @@ void main_task() {
 
   //--------------------------------------------------------------------- Collect and Send data to datacenter ---------------------------------------------------------------------//
   // Read & Send data every 30 minute
-  // if (currentTime - previousTime[0] >= 300000) {
-  //   // Get temp, humidity, co, lpg and smoke value
-  //   mqx.get();
-  //   dhtx.get();
+  if (currentTime - previousTime[0] >= 30 * 10000 ) {
+    // Get temp, humidity, co, lpg and smoke value
+    mqx.get();
+    dhtx.get();
 
-  //   // mqx.log();
-  //   // dhtx.log();
+    mqx.log();
+    dhtx.log();
 
-  //   // Get current location
-  //   // gps.getCoordinate();
+    // Get current location
+    gps.getCoordinate();
 
-  //   // Send data to Datacenter
-  //   myNrf.sendData(dhtx.temperature, dhtx.humidity, mqx.co, mqx.lpg, mqx.smoke, gps.latitude, gps.longitude);
-
-  //   previousTime[0] = currentTime;
-  // }
-
-  //-------------------------------------------------------------------------------- Rotate camera --------------------------------------------------------------------------------//
-  servoModule.resolution360();
-
-  //------------------------------------------------------------------------ Receive data from raspberry pi ------------------------------------------------------------------------//
-  if (Serial.available()) {
-    String data = Serial.readString();
-
-    if (data == "@rp|ai$NOD;") {
-      // No detect //
-      log("(rp) No detect");
-    } else if (data == "@rp|ai$FID;") {
-      // Fire is detected //
-      log("(rp) Fire is detected");
-      int key = 0;
-      onDetected(key);
-    } else if (data == "@rp|ai$SID;") {
-      // Smoke is detected //
-      log("(rp) Smoke is detected");
-      int key = 1;
-      onDetected(key);
-    }
+    previousTime[0] = currentTime;
   }
 
-  delay(100);
-}
+  //-------------------------------------------------------------------------------- Rotate camera --------------------------------------------------------------------------------//
+  if (currentTime - previousTime[1] >= 3 * 10000) {
+    servoModule.start();
 
-void test_compass() {
-  compassModule.start();
-  compassModule.log();
+    previousTime[1] = currentTime;
+  }
+
   delay(100);
 }
