@@ -57,7 +57,7 @@ class SendImageResultModule:
             self.bb64u8.binary_img = self.bb64u8.binary_img[32:]
             try:
                 # Send data to serial port
-                ser.write(bytes(chunk, 'utf-8'))
+                ser.write(chunk)
                 print(chunk)
             except KeyboardInterrupt:
                 exit(0)
