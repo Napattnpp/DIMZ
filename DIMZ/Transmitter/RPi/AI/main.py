@@ -1,5 +1,6 @@
 import configparser
 import sys
+import signal
 import cv2
 from ultralytics import YOLO
 
@@ -18,6 +19,23 @@ class_mapping = {
 # Load NCNN model
 ncnn_model = YOLO(config['ncnn_paths']['model_path'], task='detect')
 
+# Global flag to track detection status
+detection_made = False
+
+# Ensure "no detection" is saved if the process is killed
+def handle_exit(signal_received, frame):
+    global detection_made
+    if not detection_made:
+        print("No detection made, saving fallback.")
+        with open(ai_text_result_path, 'w') as file:
+            file.write("@rp|ai$NOD;")
+    sys.exit(0)
+
+# Register signal handlers (handle kill or interrupt)
+signal.signal(signal.SIGINT, handle_exit)   # Handle Ctrl+C (KeyboardInterrupt)
+signal.signal(signal.SIGTERM, handle_exit)  # Handle kill command
+
+
 def main():
     try:
         # Process results and save to a text file (overwrite previous)
@@ -29,6 +47,7 @@ def main():
                 # Check if any detection is made
                 if result.boxes is not None and len(result.boxes) > 0:
                     print("Detection Found!")
+                    detection_made = True
 
                     # Process and save detected classes
                     with open(ai_text_result_path, 'w') as file:
@@ -44,9 +63,17 @@ def main():
                             class_id = int(box.cls[0])
                             detected_label = class_mapping.get(class_id, f"unknown_{class_id}")
                             file.write(detected_label)
-
-                    print(f"Results saved to {ai_text_result_path}")
+                            print(f"Results saved to {ai_text_result_path}")
+                    
+                    # Exit after saving the first detection
                     sys.exit(0)
-    except:
-        with open(ai_text_result_path, 'w') as file:
-            file.write("@rp|ai$NOD;")
+    except Exception as e:
+            print(f"Error: {e}")
+
+try:
+    main()
+except KeyboardInterrupt:
+    handle_exit(signal.SIGINT, None)
+except Exception as e:
+    print(f"Unexpected error: {e}")
+    handle_exit(signal.SIGTERM, None)
