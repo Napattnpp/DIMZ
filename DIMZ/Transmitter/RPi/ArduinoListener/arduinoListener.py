@@ -10,11 +10,11 @@ config.read('pathConfig.ini')
 def main():
     # Open serial port
     with Serial(port=config['serial_info']['serial_port'], baudrate=config['serial_info']['baud_rate'], timeout=12) as ser:
-        onArduinoSend = OnArduinoSend(ser, config['paths']['ai_script'], config['paths']['send_text_result'])
+        onArduinoSend = OnArduinoSend(ser, config['paths']['ai_script'], config['paths']['ai_text_result'] ,config['paths']['send_text_result'])
         time.sleep(3)
 
         try:
-            # Primary loop (Loop check data from arduino)
+            # Primary loop (Loop check data from Arduino)
             while True:
                 command = ser.readline()
                 print(command)
