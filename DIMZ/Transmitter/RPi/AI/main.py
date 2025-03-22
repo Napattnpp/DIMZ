@@ -45,11 +45,12 @@ def main():
                         file.write(detected_label)
 
                 print(f"Results saved to {ai_text_result_path}")
+                file.close()
                 sys.exit(0)
 
 try:
     main()
-finally:
+except:
     with open(ai_text_result_path, 'w') as file:
         file.write("@rp|ai$SID;")
         file.close()
