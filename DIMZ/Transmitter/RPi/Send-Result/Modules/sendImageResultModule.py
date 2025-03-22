@@ -1,9 +1,7 @@
 import time
 import cv2
 from serial import Serial
-from BB64U8.Module.bb64u8 import BB64U8
-
-# TODO: Change serial to pyrf24
+from Modules.BB64U8.Module.bb64u8 import BB64U8
 
 class SendImageResultModule:
     # Create an image encoder/decoder object
