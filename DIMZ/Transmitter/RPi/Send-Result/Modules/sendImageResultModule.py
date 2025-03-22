@@ -75,9 +75,14 @@ class SendImageResultModule:
                     print(f"Sent {len(chunk)} bytes")
                 else:
                     print("Failed to send message")
-                time.sleep(0.1)  # Delay between sends
+                time.sleep(0.001)  # Delay between sends
             except KeyboardInterrupt:
                 print("Process interrupted. Exiting...")
                 exit(0)
             except Exception as e:
                 print(f"Error during transmission: {e}")
+
+        # Send the EOF message
+        self.radio.write(b'!EOF')
+        print("Transmission completed.")
+        self.radio.powerDown()
