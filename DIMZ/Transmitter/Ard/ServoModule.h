@@ -4,20 +4,23 @@ class ServoModule {
     int servo_pin = 0;
 
   public:
+    bool start_state = true;
+
     ServoModule(int _pin) {
       servo_pin = _pin;
     }
 
     void init();
-    bool start();
+    void start();
 };
 
 void ServoModule::init() {
   servo.attach(servo_pin);
 }
 
-bool ServoModule::start() {
-  SAW("@ar|PR;\r\n", "@rp|AIRS$1;\r\n");
+void ServoModule::start() {
+  if (start_state == false) return;
+  if (SAW("@ar|PR;\r\n", "@rp|AIRS$1;\r\n") == false) return;
 
   for (int i = 0; i < 180; i++) {
     servo.write(i);
@@ -31,5 +34,5 @@ bool ServoModule::start() {
 
   Serial.println("@ar|SPR;\r\n");
 
-  return true;
+  start_state = false;
 }
