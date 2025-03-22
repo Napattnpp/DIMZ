@@ -18,6 +18,7 @@ class_mapping = {
 # Load NCNN model
 ncnn_model = YOLO(config['ncnn_paths']['model_path'], task='detect')
 
+def __main__():
 # Process results and save to a text file (overwrite previous)
 while (1):
     # Start detection from webcam and MUST use stream=True for real-time processing
