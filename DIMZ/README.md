@@ -6,6 +6,6 @@
   - ``` pip3 install ncnn ```
   - ``` pip3 install ultralytics ```
 - (Optional) Delete unnecessary folders depending on the selected configuration
-  - ``` python3 script.py station ``` Deletes the 'Transmitter' folder
-  - ``` python3 script.py transmitter/arduino ``` Deletes 'Station' and 'Transmitter/RPi'
-  - ``` python3 script.py transmitter/rpi ``` Deletes 'Station' and 'Transmitter/Arduino'
+  - ``` python3 projectConfig.py station ``` Deletes the 'Transmitter' folder
+  - ``` python3 projectConfig.py transmitter/arduino ``` Deletes 'Station' and 'Transmitter/RPi'
+  - ``` python3 projectConfig.py transmitter/rpi ``` Deletes 'Station' and 'Transmitter/Arduino'
