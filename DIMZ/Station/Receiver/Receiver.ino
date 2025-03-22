@@ -25,7 +25,7 @@ void setup() {
   radio.setDataRate(RF24_2MBPS);  // Reliable transmission speed
   radio.startListening();  // Start listening for incoming data
 
-  Serial.println("Receiver Ready. \nWaiting for image data...");
+  // Serial.println("Receiver Ready. \nWaiting for image data...");
 }
 
 void loop() {
@@ -36,7 +36,7 @@ void loop() {
 
     // Check for the end of image marker
     if (memcmp(receivedData, "!EOF", 4) == 0) {
-      Serial.println("End of image received.");
+      // Serial.println("End of image received.");
     } else {
       // Print received data (for debugging purposes)
       // Serial.print("Received chunk: ");
