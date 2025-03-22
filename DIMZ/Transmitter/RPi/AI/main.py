@@ -12,8 +12,8 @@ ai_text_result_path = config['paths']['ai_text_result']
 
 # Custom class mapping (modify as needed)
 class_mapping = {
-    0: "@rp|ai$FID;",
-    1: "@rp|ai$SID;"
+    0: "@rp|ai$FID;\r\n",
+    1: "@rp|ai$SID;\r\n"
 }
 
 # Load NCNN model
@@ -28,7 +28,7 @@ def handle_exit(signal_received, frame):
     if not detection_made:
         print("No detection made, saving fallback.")
         with open(ai_text_result_path, 'w') as file:
-            file.write("@rp|ai$NOD;")
+            file.write("@rp|ai$NOD;\r\n")
     sys.exit(0)
 
 # Register signal handlers (handle kill or interrupt)
