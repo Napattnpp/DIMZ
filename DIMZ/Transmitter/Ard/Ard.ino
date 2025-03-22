@@ -1,6 +1,6 @@
 #include "SystemFile.h"
 
-DHTx dhtx(DHT_PIN, DHT_TYPE);
+DHTX dhtx(DHT_PIN, DHT_TYPE);
 MQX mqx(MQX_PIN);
 GPSModule gps;
 ServoModule servoModule(SERVO_PIN);
@@ -12,10 +12,8 @@ void setup() {
   Serial.begin(115200);
   delay(3000);
 
-  compassModule.init();
   servoModule.init();
 
-  myNrf.init();
   gps.init();
 
   //! Initialize dht the last one !//
