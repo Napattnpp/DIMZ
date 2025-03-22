@@ -9,14 +9,14 @@ class ServoModule {
     }
 
     void init();
-    void start();
+    bool start();
 };
 
 void ServoModule::init() {
   servo.attach(servo_pin);
 }
 
-void ServoModule::start() {
+bool ServoModule::start() {
   SAW("@ar|PR;\r\n", "@rp|AIRS$1;\r\n");
 
   for (int i = 0; i < 180; i++) {
@@ -30,4 +30,6 @@ void ServoModule::start() {
   }
 
   Serial.println("@ar|SPR;\r\n");
+
+  return true;
 }

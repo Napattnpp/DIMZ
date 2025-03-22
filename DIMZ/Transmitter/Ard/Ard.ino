@@ -1,3 +1,4 @@
+#include "pico/multicore.h"
 #include "SystemFile.h"
 
 DHTX dhtx(DHT_PIN, DHT_TYPE);
@@ -7,6 +8,17 @@ ServoModule servoModule(SERVO_PIN);
 
 unsigned long currentTime = 0;
 unsigned long previousTime[2];
+
+// Function to run on Core 1
+void core1Task() {
+  while (true) {
+    if (servoModule.start()) {
+      delay(2 * 60000);
+    }
+
+    delay(100);
+  }
+}
 
 void setup() {
   Serial.begin(115200);
@@ -42,13 +54,6 @@ void main_task() {
     gps.getCoordinate();
 
     previousTime[0] = currentTime;
-  }
-
-  //-------------------------------------------------------------------------------- Rotate camera --------------------------------------------------------------------------------//
-  if (currentTime - previousTime[1] >= 3 * 10000) {
-    servoModule.start();
-
-    previousTime[1] = currentTime;
   }
 
   delay(100);
