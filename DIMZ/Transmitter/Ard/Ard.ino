@@ -31,6 +31,9 @@ void setup() {
   //! Initialize dht the last one !//
   mqx.init();
   dhtx.init();
+
+  // Launch core1Task() on Core 1
+  multicore_launch_core1(core1Task);
 }
 
 void loop() {
