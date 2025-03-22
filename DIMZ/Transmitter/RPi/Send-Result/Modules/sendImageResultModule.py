@@ -75,7 +75,7 @@ class SendImageResultModule:
                     print(f"Sent {len(chunk)} bytes")
                 else:
                     print("Failed to send message")
-                time.sleep(0.001)  # Delay between sends
+                time.sleep(0.001)
             except KeyboardInterrupt:
                 print("Process interrupted. Exiting...")
                 exit(0)
