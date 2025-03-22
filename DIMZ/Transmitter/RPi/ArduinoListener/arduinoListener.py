@@ -10,7 +10,7 @@ config.read('pathConfig.ini')
 def main():
     # Open serial port
     with Serial(port=config['serial_info']['serial_port'], baudrate=config['serial_info']['baud_rate'], timeout=12) as ser:
-        onArduinoSend = OnArduinoSend(ser, config['paths']['ai_script'], config['paths']['ai_image_result'])
+        onArduinoSend = OnArduinoSend(ser, config['paths']['ai_script'], config['paths']['send_image_result'])
         time.sleep(3)
 
         try:
