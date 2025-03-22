@@ -2,13 +2,12 @@ import subprocess
 import os
 
 class OnArduinoSend:
-    def __init__(self, ser, ai_script_path, textResult_path, sendImageResult_path):
+    def __init__(self, ser, ai_script_path, sendImageResult_path):
         self.prediction_state = False
         self.detection_exit = False
 
         self.ser = ser
         self.ai_script_path = ai_script_path
-        self.textResult_path = textResult_path
         self.sendImageResult_path = sendImageResult_path
 
     def onPredictionStart(self, command):
