@@ -5,6 +5,6 @@ from Modules.sendImageResultModule import SendImageResultModule as SI
 config = configparser.ConfigParser()
 config.read('pathConfig.ini')
 
-si = SI(config['serial_info']['serial_port'], config['serial_info']['baud_rate'])
+si = SI()
 si.loadImage(image_path=config['paths']['ai_image_result'])
 si.send()

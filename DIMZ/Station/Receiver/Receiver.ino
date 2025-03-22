@@ -3,7 +3,7 @@
 #define CE          9
 #define CSN         10
 
-const unsigned char address[] = "101101";
+const unsigned char address[] = "Node1";
 RF24 radio(CE, CSN);
 
 void setup() {

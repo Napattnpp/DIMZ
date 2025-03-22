@@ -1,16 +1,34 @@
 import time
+from pyrf24 import RF24
+from pyrf24.pyrf24 import rf24_datarate_e, rf24_pa_dbm_e
 import cv2
-from serial import Serial
 from Modules.BB64U8.Module.bb64u8 import BB64U8
 
 class SendImageResultModule:
     # Create an image encoder/decoder object
 
-    def __init__(self, serialPort, baudRate):
+    def __init__(self):
         self.bb64u8 = BB64U8()
 
-        self.serialPort = serialPort
-        self.baudRate = baudRate
+        # Initialize the nrf24l01 module pin
+        CE_PIN = 25
+        CSN_PIN = 0
+
+        self.radio = RF24(CE_PIN, CSN_PIN)
+        if not self.radio.begin():
+            print("NRF24 initialization failed!")
+            exit()
+        else:
+            print("NRF24 initialized successfully.")
+
+            # Set the PA level to high
+            self.radio.set_pa_level(rf24_pa_dbm_e.RF24_PA_HIGH)
+            self.radio.setDataRate(rf24_datarate_e.RF24_2MBPS)
+            # Set the channel
+            self.radio.openWritingPipe("Node1".encode('utf-8'))
+            self.radio.stopListening()
+
+            time.sleep(1)
 
     def getImage(self, save_image_path):
         # Select and check if camera is fine
@@ -47,17 +65,13 @@ class SendImageResultModule:
         self.bb64u8.encode(image_path, 0)
 
     def send(self):
-        # Open serial port
-        with Serial(port=self.serialPort, baudrate=self.baudRate, timeout=12) as ser:
-            if __name__ == "__main__":
-                time.sleep(3)
-
         # Read encode image up to 32 bytes from memory
         while (chunk := self.bb64u8.binary_img[:32]):
             self.bb64u8.binary_img = self.bb64u8.binary_img[32:]
             try:
-                # Send data to serial port
-                ser.write(chunk)
-                print(chunk)
+                if self.radio.write(chunk):  # Send the message as bytes
+                    print(chunk)
+                else:
+                    print("Failed to send message")
             except KeyboardInterrupt:
                 exit(0)
