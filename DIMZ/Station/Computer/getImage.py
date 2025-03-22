@@ -3,10 +3,6 @@ import time
 
 serial_port = '/dev/tty.usbmodem1101'
 
-def fillter(buffer):
-    # Replace all instances of \r\n with just \n
-    return buffer.replace(b'\r\n', b'')
-
 def readDate(port, baudRate, filePath):
   time.sleep(3)
 
@@ -18,11 +14,7 @@ def readDate(port, baudRate, filePath):
     with open(filePath, 'wb') as file:
       while (buffer := ser.read()):
         # Clean the data
-        buffer = fillter(buffer)
-
-        print(buffer)
-        file.write(buffer)
-
+        file.write(buffer.replace(b'\r\n', b''))
   print("[Done]")
 
 if __name__ == "__main__":

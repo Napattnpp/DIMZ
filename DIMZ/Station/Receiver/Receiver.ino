@@ -12,39 +12,33 @@ RF24 radio(CE_PIN, CSN_PIN);
 uint8_t address[6] = "Node1";
 
 void setup() {
-  // Start serial communication for debugging
   Serial.begin(115200);
 
   // Initialize NRF24
   if (!radio.begin()) {
     Serial.println("Error: Radio hardware not found.");
-    while (1);  // Halt the program if the NRF24L01 module is not found
+    while (1);
   }
   radio.openReadingPipe(0, address);  // Open the reading pipe
-  radio.setPALevel(RF24_PA_HIGH);  // Max power for range
-  radio.setDataRate(RF24_2MBPS);  // Reliable transmission speed
-  radio.startListening();  // Start listening for incoming data
-
-  // Serial.println("Receiver Ready. \nWaiting for image data...");
+  radio.setPALevel(RF24_PA_HIGH);     // Max power for range
+  radio.setDataRate(RF24_2MBPS);      // Reliable transmission speed
+  radio.startListening();             // Start listening for incoming data
 }
 
 void loop() {
   if (radio.available()) {
-    // Create a buffer to hold the incoming data
-    byte receivedData[32];
-    radio.read(receivedData, sizeof(receivedData));
+    // Get the size of the payload (data received)
+    int payloadSize = radio.getDynamicPayloadSize();
+    byte data[payloadSize];
 
-    // Check for the end of image marker
-    if (memcmp(receivedData, "!EOF", 4) == 0) {
-      // Serial.println("End of image received.");
-    } else {
-      // Print received data (for debugging purposes)
-      // Serial.print("Received chunk: ");
-      for (int i = 0; i < 32; i++) {
-        Serial.print(receivedData[i], HEX);
-        Serial.print(" ");
-      }
-      Serial.println();
+    // Read the received data
+    radio.read(data, payloadSize);
+    
+    // Print the received data
+    for (int i = 0; i < payloadSize; i++) {
+      Serial.print(data[i], HEX);
+      Serial.print(" ");
     }
+    Serial.println();
   }
 }

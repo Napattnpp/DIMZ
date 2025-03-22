@@ -8,11 +8,12 @@ class SendImageResultModule:
     # Create an image encoder/decoder object
 
     def __init__(self):
-        self.bb64u8 = BB64U8()
-
         # Initialize the nrf24l01 module pin
         CE_PIN = 25
         CSN_PIN = 0
+
+        self.bb64u8 = BB64U8()
+        self.package_size = 0
 
         self.radio = RF24(CE_PIN, CSN_PIN)
         if not self.radio.begin():
@@ -72,9 +73,11 @@ class SendImageResultModule:
 
             try:
                 if self.radio.write(chunk):  # Send the message as bytes
-                    print(f"Sent {len(chunk)} bytes")
+                    print(f"{chunk} \n\t ({len(chunk)} bytes)")
+                    self.package_size = self.package_size + 1
                 else:
                     print("Failed to send message")
+                    exit(1)
                 time.sleep(0.001)
             except KeyboardInterrupt:
                 print("Process interrupted. Exiting...")
@@ -83,6 +86,6 @@ class SendImageResultModule:
                 print(f"Error during transmission: {e}")
 
         # Send the EOF message
-        self.radio.write(b'!EOF')
-        print("Transmission completed.")
+        # self.radio.write(b'!')
+        print(f"Transmission completed with Package size: {self.package_size}")
         self.radio.powerDown()
