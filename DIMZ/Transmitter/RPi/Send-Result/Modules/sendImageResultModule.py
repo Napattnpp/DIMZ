@@ -66,12 +66,18 @@ class SendImageResultModule:
 
     def send(self):
         # Read encode image up to 32 bytes from memory
-        while (chunk := self.bb64u8.binary_img[:32]):
+        while (self.bb64u8.binary_img):
+            chunk = self.bb64u8.binary_img[:32]
             self.bb64u8.binary_img = self.bb64u8.binary_img[32:]
+
             try:
                 if self.radio.write(chunk):  # Send the message as bytes
-                    print(chunk)
+                    print(f"Sent {len(chunk)} bytes")
                 else:
                     print("Failed to send message")
+                time.sleep(0.1)  # Delay between sends
             except KeyboardInterrupt:
+                print("Process interrupted. Exiting...")
                 exit(0)
+            except Exception as e:
+                print(f"Error during transmission: {e}")
