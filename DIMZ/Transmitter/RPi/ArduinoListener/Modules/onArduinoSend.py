@@ -70,7 +70,7 @@ class OnArduinoSend:
 
     def overWriteAIResult():
         with open(textResult_path, 'w') as file:
-            file.write("NOD")
+            file.write("@rp|ai$SID;")
             file.close()
 
     def log(self, index):
