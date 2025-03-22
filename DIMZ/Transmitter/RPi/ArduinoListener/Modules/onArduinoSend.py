@@ -43,14 +43,11 @@ class OnArduinoSend:
                 No need to kill the AI-script task.
                 If an object is detected the script will automatically exit.
 
-                If AI script exits by detection --> SendImageResult
-                If not AI script overwrites AI/text-result.txt --> No detect
+                If AI script exits by detection --> execute sendImageResult
             '''
             # Send prediction to Arduino
-            if detection_exit:
+            if self.detection_exit:
                 os.system("python3 " + self.sendImageResult_path)
-            else:
-                self.overWriteAIResult()
 
     def onPredictionStop(self, command, process):
         if command == b"@ar|SPR;\r\n":
@@ -67,11 +64,6 @@ class OnArduinoSend:
             # Break from the secondary loop by @ar|SPR; command
             self.prediction_state = False
             self.detection_exit = False
-
-    def overWriteAIResult():
-        with open(textResult_path, 'w') as file:
-            file.write("@rp|ai$SID;")
-            file.close()
 
     def log(self, index):
         if index == 0:
