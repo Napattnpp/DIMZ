@@ -73,7 +73,8 @@ class SendImageResultModule:
 
             try:
                 if self.radio.write(chunk):  # Send the message as bytes
-                    print(f"{chunk} \n\t ({len(chunk)} bytes)")
+                    # print(chunk)
+                    # print(len(chunk))
                     self.package_size = self.package_size + 1
                 else:
                     print("Failed to send message")
