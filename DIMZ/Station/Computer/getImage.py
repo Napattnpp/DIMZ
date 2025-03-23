@@ -30,4 +30,4 @@ def save_image(port, baud_rate, output_path):
 
     print("[Waiting for New Data...]")
 
-save_image('/dev/tty.usbmodem1101', 115200, 'received_image.jpg')
+save_image('/dev/tty.usbmodem1101', 115200, 'received_image.png')
