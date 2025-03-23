@@ -1,21 +1,22 @@
-from serial import Serial
-import time
+import serial
 
-serial_port = '/dev/tty.usbmodem1101'
+# This function is used to remove the \r\n from the buffer (optional)
+def fillter(buffer):
+    # Replace all instances of \r\n with just \n
+    return buffer.replace(b'\r\n', b'')
 
-def readDate(port, baudRate, filePath):
-  time.sleep(3)
+def save_image(port, baud_rate, output_path):
+    print("[Receiving Image]")
 
-  print("[Executing]")
-  # Read data from serial port
-  with Serial(port=port, baudrate=baudRate, timeout=12) as ser:
+    # Open the serial port
+    ser = serial.Serial(port, baud_rate, timeout=12)
 
-    # Save data to file
-    with open(filePath, 'wb') as file:
-      while (buffer := ser.read()):
-        # Clean the data
-        file.write(buffer.replace(b'\r\n', b''))
-  print("[Done]")
+    # Open the output file
+    with open(output_path, 'wb') as img_file:
+        while chunk := ser.read(32):
+            print(chunk)
+            img_file.write(chunk)
+    print("[Image Saved]")
+    ser.close()
 
-if __name__ == "__main__":
-  readDate(serial_port, 115200, 'DIMZ/Station/Output/image-output-serial.txt')
+save_image('/dev/tty.usbmodem1101', 115200, 'received_image.jpg')
