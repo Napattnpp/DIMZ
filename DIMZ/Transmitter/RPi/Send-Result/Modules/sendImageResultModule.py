@@ -35,7 +35,7 @@ class SendImageResultModule:
             self.radio.openWritingPipe("Node1".encode('utf-8'))
             self.radio.stopListening()
 
-            time.sleep(1)
+            time.sleep(0.5)
 
     def getImage(self, save_image_path):
         # Select and check if camera is fine
@@ -49,17 +49,18 @@ class SendImageResultModule:
         frame = None
 
         # Take a pictures
-        for i in range(3):
+        for i in range(15):
             ret, frame = cam.read()
             if not ret:
                 print(f"Warning: Failed to capture frame on attempt {i+1}")
 
         # Save image
         if ret and frame is not None:
-            cv2.imwrite(save_image_path, cv2.flip(frame, 1))
+            cv2.imwrite(save_image_path, frame)
             print("Image was saved.")
         else:
             print("Error: Failed to capture image.")
+            exit()
 
         # Convert image
         self.bb64u8.encode(save_image_path, 0)
