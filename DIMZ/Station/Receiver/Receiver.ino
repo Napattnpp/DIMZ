@@ -22,23 +22,21 @@ void setup() {
   radio.openReadingPipe(0, address);  // Open the reading pipe
   radio.setPALevel(RF24_PA_HIGH);     // Max power for range
   radio.setDataRate(RF24_2MBPS);      // Reliable transmission speed
+  radio.enableDynamicPayloads();      // Enable dynamic payload size
+  radio.setAutoAck(true);             // Enable auto-acknowledge (required for dynamic payloads)
   radio.startListening();             // Start listening for incoming data
 }
 
 void loop() {
   if (radio.available()) {
     // Get the size of the payload (data received)
+    byte data[32];
     int payloadSize = radio.getDynamicPayloadSize();
-    byte data[payloadSize];
 
-    // Read the received data
-    radio.read(data, payloadSize);
-    
-    // Print the received data
-    for (int i = 0; i < payloadSize; i++) {
-      Serial.print(data[i], HEX);
-      Serial.print(" ");
+    if (payloadSize > 0) {
+      // Read the received data
+      radio.read(data, payloadSize);
+      Serial.write(data, payloadSize);
     }
-    Serial.println();
   }
 }

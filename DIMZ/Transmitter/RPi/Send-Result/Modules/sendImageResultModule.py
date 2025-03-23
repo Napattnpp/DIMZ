@@ -25,6 +25,12 @@ class SendImageResultModule:
             # Set the PA level to high
             self.radio.set_pa_level(rf24_pa_dbm_e.RF24_PA_HIGH)
             self.radio.setDataRate(rf24_datarate_e.RF24_2MBPS)
+
+            # Ensure dynamic payloads are on
+            self.radio.enableDynamicPayloads()
+            # Enable auto-ack (required for dynamic payloads)
+            self.radio.setAutoAck(True)
+
             # Set the channel
             self.radio.openWritingPipe("Node1".encode('utf-8'))
             self.radio.stopListening()
@@ -68,13 +74,15 @@ class SendImageResultModule:
     def send(self):
         # Read encode image up to 32 bytes from memory
         while (self.bb64u8.binary_img):
+            # Read the first 32 bytes from the memory
             chunk = self.bb64u8.binary_img[:32]
+            # Remove the first 32 bytes from the memory
             self.bb64u8.binary_img = self.bb64u8.binary_img[32:]
 
             try:
                 if self.radio.write(chunk):  # Send the message as bytes
-                    # print(chunk)
-                    # print(len(chunk))
+                    print(chunk)
+                    print(len(chunk))
                     self.package_size = self.package_size + 1
                 else:
                     print("Failed to send message")
@@ -86,7 +94,7 @@ class SendImageResultModule:
             except Exception as e:
                 print(f"Error during transmission: {e}")
 
-        # Send the EOF message
+        # Send the EOF message (optional)
         # self.radio.write(b'!')
         print(f"Transmission completed with Package size: {self.package_size}")
         self.radio.powerDown()
