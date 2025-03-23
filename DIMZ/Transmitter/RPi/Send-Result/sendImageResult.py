@@ -6,5 +6,6 @@ config = configparser.ConfigParser()
 config.read('pathConfig.ini')
 
 si = SI()
-si.loadImage(image_path=config['paths']['ai_image_result'])
+# si.loadImage(image_path=config['paths']['ai_image_result'])
+si.getImage(save_image_path=config['paths']['ai_image_result'])
 si.send()
