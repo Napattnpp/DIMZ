@@ -35,7 +35,6 @@ def handle_exit(signal_received, frame):
 signal.signal(signal.SIGINT, handle_exit)   # Handle Ctrl+C (KeyboardInterrupt)
 signal.signal(signal.SIGTERM, handle_exit)  # Handle kill command
 
-
 def main():
     try:
         # Process results and save to a text file (overwrite previous)
