@@ -48,14 +48,5 @@ void main_task() {
     previousTime[1] = currentTime;
   }
 
-  if (Serial.available() > 0) {
-    String command = Serial.readString();
-
-    // If Raspberry Pi detect fire, stop servo motor
-    if (command == "@rp|DETE$1;\r\n") {
-      servoModule.start_state = false;
-    }
-  }
-
   delay(100);
 }

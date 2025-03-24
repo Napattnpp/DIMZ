@@ -1,5 +1,6 @@
 import subprocess
 import os
+import time
 
 class OnArduinoSend:
     def __init__(self, ser, ai_script_path, sendImageResult_path):
@@ -19,11 +20,12 @@ class OnArduinoSend:
             # Run an AI script in background task
             process = subprocess.Popen(['python3', self.ai_script_path])
             print(f'Start process with PID: {process.pid}')
-
-            self.prediction_state = True
+            time.sleep(3)
 
             # Send: script running status to Arduino
             self.ser.write(b'@rp|SRS$1;\r\n')
+
+            self.prediction_state = True
 
             # Secondary loop (Prediction loop)
             while self.prediction_state:
@@ -50,7 +52,9 @@ class OnArduinoSend:
             if self.detection_exit:
                 # Send: detection status to Arduino
                 self.ser.write(b'@rp|DETE$1;\r\n')
+                
                 # Execute sendImageResult
+                time.sleep(3)
                 os.system("python3 " + self.sendImageResult_path)
 
     def onPredictionStop(self, command, process):
