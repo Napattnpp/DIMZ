@@ -50,7 +50,7 @@ class SendImageResultModule:
         frame = None
 
         # Take a pictures
-        for i in range(10):
+        for i in range(5):
             ret, frame = cam.read()
             if not ret:
                 print(f"Warning: Failed to capture frame on attempt {i+1}")
@@ -61,11 +61,11 @@ class SendImageResultModule:
             print("Image was saved.")
         else:
             print("Error: Failed to capture image.")
+            cam.release()
             sys.exit(0)
 
         # Release the camera
         cam.release()
-        cv2.destroyAllWindows()
 
         # Convert image
         self.bb64u8.encode(save_image_path, 0)
@@ -79,6 +79,8 @@ class SendImageResultModule:
         sys.exit(0)
 
     def send(self):
+        print("Transmitting is starting...")
+
         # Read encode image up to 32 bytes from memory
         while (self.bb64u8.binary_img):
             # Read the first 32 bytes from the memory
@@ -88,13 +90,12 @@ class SendImageResultModule:
 
             try:
                 if self.radio.write(chunk):  # Send the message as bytes
-                    print(chunk)
-                    print(f"({len(chunk)} bytes)")
+                    # print(chunk)
+                    # print(f"({len(chunk)} bytes)")
                     self.package_size = self.package_size + 1
                 else:
                     print("Failed to send message")
                     exit(1)
-                time.sleep(0.01)
             except KeyboardInterrupt:
                 print("Process interrupted. Exiting...")
                 self.handle_exit()

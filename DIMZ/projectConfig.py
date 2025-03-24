@@ -3,7 +3,7 @@ import shutil
 import sys
 import json
 
-CURRENT_DIR = os.getcwd();
+CURRENT_DIR = os.getcwd()
 
 # Config file path
 CONFIG_FILE = os.path.join(CURRENT_DIR, "projectConfig.json")

@@ -20,7 +20,7 @@ class OnArduinoSend:
             # Run an AI script in background task
             process = subprocess.Popen(['python3', self.ai_script_path])
             print(f'Start process with PID: {process.pid}')
-            time.sleep(1)
+            time.sleep(2)
 
             # Send: script running status to Arduino
             self.ser.write(b'@rp|SRS$1;\r\n')
@@ -54,7 +54,7 @@ class OnArduinoSend:
             if self.detection_exit:
                 # Send: detection status to Arduino
                 self.ser.write(b'@rp|DETE$1;\r\n')
-                time.sleep(1)
+                time.sleep(2)
                 
                 # Execute sendImageResult
                 os.system("python3 " + self.sendImageResult_path)
