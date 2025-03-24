@@ -11,7 +11,8 @@ class OnArduinoSend:
         self.sendImageResult_path = sendImageResult_path
 
     def onPredictionStart(self, command):
-        if command == b"@ar|PR;\r\n":
+        # If Arduino send: prepare to predict
+        if command == b"@ar|PREP;\r\n":
             # Start predict
             self.log(0)
 
@@ -21,7 +22,8 @@ class OnArduinoSend:
 
             self.prediction_state = True
 
-            self.ser.write(b'@rp|AIRS$1;\r\n')
+            # Send: script running status to Arduino
+            self.ser.write(b'@rp|SRS$1;\r\n')
 
             # Secondary loop (Prediction loop)
             while self.prediction_state:
@@ -44,11 +46,15 @@ class OnArduinoSend:
 
                 If AI script exits by detection --> execute sendImageResult
             '''
-            # Send prediction to Arduino
+            # Check if AI script exits by detection
             if self.detection_exit:
+                # Send: detection status to Arduino
+                self.ser.write(b'@rp|DETE$1;\r\n')
+                # Execute sendImageResult
                 os.system("python3 " + self.sendImageResult_path)
 
     def onPredictionStop(self, command, process):
+        # If Arduino send: stop predict
         if command == b"@ar|SPR;\r\n":
             # Stop predict
             self.log(1)

@@ -10,13 +10,10 @@ unsigned long previousTime[2];
 
 void setup() {
   Serial.begin(115200);
-  delay(3000);
+  delay(100);
 
   servoModule.init();
-
   gps.init();
-
-  //! Initialize dht the last one !//
   mqx.init();
   dhtx.init();
 }
@@ -49,6 +46,15 @@ void main_task() {
   if (currentTime - previousTime[1] >= 3 * 60000) {
     servoModule.start_state = true;
     previousTime[1] = currentTime;
+  }
+
+  if (Serial.available() > 0) {
+    String command = Serial.readString();
+
+    // If Raspberry Pi detect fire, stop servo motor
+    if (command == "@rp|DETE$1;\r\n") {
+      servoModule.start_state = false;
+    }
   }
 
   delay(100);

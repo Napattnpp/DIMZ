@@ -16,11 +16,13 @@ class ServoModule {
 
 void ServoModule::init() {
   servo.attach(servo_pin);
+  delay(50);
+  servo.write(90);
 }
 
 void ServoModule::start() {
   if (start_state == false) return;
-  if (SAW("@ar|PR;\r\n", "@rp|AIRS$1;\r\n") == false) return;
+  if (SAW("@ar|PREP;\r\n", "@rp|SRS$1;\r\n") == false) return;
 
   for (int i = 0; i < 180; i++) {
     servo.write(i);
