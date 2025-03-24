@@ -74,6 +74,10 @@ class SendImageResultModule:
         # Convert image
         self.bb64u8.encode(image_path, 0)
 
+    def handle_exit(self):
+        self.radio.powerDown()
+        sys.exit(0)
+
     def send(self):
         # Read encode image up to 32 bytes from memory
         while (self.bb64u8.binary_img):
@@ -90,12 +94,13 @@ class SendImageResultModule:
                 else:
                     print("Failed to send message")
                     exit(1)
-                time.sleep(0.001)
+                time.sleep(0.01)
             except KeyboardInterrupt:
                 print("Process interrupted. Exiting...")
-                sys.exit(0)
+                self.handle_exit()
             except Exception as e:
                 print(f"Error during transmission: {e}")
+                self.handle_exit()
 
         # Send the EOF message (optional)
         # self.radio.write(b'!')

@@ -10,7 +10,7 @@ class SendTextResultModule:
         # Open serial port
         with Serial(port=self.serialPort, baudrate=self.baudRate, timeout=12) as ser:
             if __name__ == "__main__":
-                time.sleep(3)
+                time.sleep(1)
 
     def sendFromFile(self, text_result_path):
         format_predict = ""

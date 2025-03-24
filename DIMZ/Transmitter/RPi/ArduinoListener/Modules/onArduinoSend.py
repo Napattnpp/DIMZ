@@ -20,7 +20,7 @@ class OnArduinoSend:
             # Run an AI script in background task
             process = subprocess.Popen(['python3', self.ai_script_path])
             print(f'Start process with PID: {process.pid}')
-            time.sleep(3)
+            time.sleep(1)
 
             # Send: script running status to Arduino
             self.ser.write(b'@rp|SRS$1;\r\n')
@@ -38,23 +38,25 @@ class OnArduinoSend:
                     break
 
                 # Check if arduino send stop predict
-                command = self.ser.readline()
-                print(command)
-                self.onPredictionStop(command, process)
+                if self.ser.in_waiting > 0:
+                    command = self.ser.readline()
+                    print(command)
+                    self.onPredictionStop(command, process)
+
+                time.sleep(0.01)
 
             '''
                 No need to kill the AI-script task.
                 If an object is detected the script will automatically exit.
-
-                If AI script exits by detection --> execute sendImageResult
+                If AI script exits by detection --> execute sendImageResult.
             '''
             # Check if AI script exits by detection
             if self.detection_exit:
                 # Send: detection status to Arduino
                 self.ser.write(b'@rp|DETE$1;\r\n')
+                time.sleep(1)
                 
                 # Execute sendImageResult
-                time.sleep(3)
                 os.system("python3 " + self.sendImageResult_path)
 
     def onPredictionStop(self, command, process):
@@ -69,7 +71,6 @@ class OnArduinoSend:
                 process.wait()
                 print(f'Stopped process with PID: {process.pid}')
 
-            # TODO: Write text-result.txt --> Not detect
             # Break from the secondary loop by @ar|SPR; command
             self.prediction_state = False
             self.detection_exit = False
