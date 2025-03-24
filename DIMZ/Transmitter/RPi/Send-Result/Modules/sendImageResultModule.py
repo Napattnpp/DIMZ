@@ -1,4 +1,5 @@
 import time
+import sys
 from pyrf24 import RF24
 from pyrf24.pyrf24 import rf24_datarate_e, rf24_pa_dbm_e
 import cv2
@@ -18,7 +19,7 @@ class SendImageResultModule:
         self.radio = RF24(CE_PIN, CSN_PIN)
         if not self.radio.begin():
             print("NRF24 initialization failed!")
-            exit()
+            sys.exit(0)
         else:
             print("NRF24 initialized successfully.")
 
@@ -35,21 +36,21 @@ class SendImageResultModule:
             self.radio.openWritingPipe("Node1".encode('utf-8'))
             self.radio.stopListening()
 
-            time.sleep(0.5)
+            time.sleep(1)
 
     def getImage(self, save_image_path):
         # Select and check if camera is fine
         cam = cv2.VideoCapture(0)
         if not cam.isOpened():
             print("Error: Could not open camera.")
-            exit()
+            sys.exit(0)
 
         # Initialize ret and frame to handle potential errors
         ret = False
         frame = None
 
         # Take a pictures
-        for i in range(15):
+        for i in range(10):
             ret, frame = cam.read()
             if not ret:
                 print(f"Warning: Failed to capture frame on attempt {i+1}")
@@ -60,13 +61,14 @@ class SendImageResultModule:
             print("Image was saved.")
         else:
             print("Error: Failed to capture image.")
-            exit()
+            sys.exit(0)
+
+        # Release the camera
+        cam.release()
+        cv2.destroyAllWindows()
 
         # Convert image
         self.bb64u8.encode(save_image_path, 0)
-
-        cam.release()
-        cv2.destroyAllWindows()
 
     def loadImage(self, image_path):
         # Convert image
@@ -91,7 +93,7 @@ class SendImageResultModule:
                 time.sleep(0.001)
             except KeyboardInterrupt:
                 print("Process interrupted. Exiting...")
-                exit(0)
+                sys.exit(0)
             except Exception as e:
                 print(f"Error during transmission: {e}")
 
