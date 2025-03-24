@@ -42,7 +42,7 @@ def main(save_image=True, save_text=True):
         # Process results and save to a text file (overwrite previous)
         while (1):
             # Start detection from webcam and MUST use stream=True for real-time processing
-            results = ncnn_model.predict(source=0, stream=True, conf=0.78)
+            results = ncnn_model.predict(source=0, stream=True, conf=0.73)
 
             for result in results:
                 # Check if any detection is made
@@ -82,7 +82,7 @@ def main(save_image=True, save_text=True):
             file.close()
 
 try:
-    main()
+    main(save_image=False, save_text=False)
 except KeyboardInterrupt:
     handle_exit(signal.SIGINT, None)
 except Exception as e:
