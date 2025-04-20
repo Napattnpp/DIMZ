@@ -53,12 +53,3 @@ The Wildfire Detection Pole integrates the following components:
 3. If no wildfires are detected:
    - The camera continues rotating and pauses for 30 seconds after completing a full rotation.
    - Temperature and humidity data are sent every 30 minutes.
-
-#### Data Transmission
-- Data is encoded in two stages for efficiency
-  1. **Run-Length Encoding (RLE)**: Compresses the data to reduce size.
-  2. **Alphabet Replacement Encoding**: Further compresses the RLE data for transmission.
-- The encoded data is sent to the Data Center via the NRF module.
-
-
-![](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l2i4m9xpfjubv2indmda.png)
