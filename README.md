@@ -3,7 +3,7 @@
 ### Objective
 The objective of our project is to transition from a human-based observation to a camera-based system. Cameras have a much longer viewing distance than humans, and our system provides notifications much faster than manual methods, helping to avoid danger more effectively.
 
-![]([https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8veayyzala670qn96dwm.png](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3wd2r3nlxoncu6amwapj.png))
+![](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3wd2r3nlxoncu6amwapj.png)
 
 ---
 
